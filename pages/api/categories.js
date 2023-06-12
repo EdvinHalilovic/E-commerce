@@ -4,9 +4,14 @@ import {Category} from "@/models/Category";
 
 export default async function handle(req, res) {
   const {method} = req;
+  if (method === 'DELETE') {
+    const {_id} = req.query;
+    await Category.deleteOne({_id});
+    res.json('ok');
+  }
   await mongooseConnect();
   if (method === 'PUT') {
-    const {name,parentCategory,properties,_id} = req.body;
+    const {name,parentCategory,properties,_id,category,price} = req.body;
     const categoryDoc = await Category.updateOne({_id},{
       name,
       parent: parentCategory || undefined,
@@ -20,7 +25,7 @@ export default async function handle(req, res) {
   }
 
   if (method === 'POST') {
-    const {name,parentCategory} = req.body;
+    const {name,parentCategory,price,category,_id} = req.body;
     const categoryDoc = await Category.create({
       name,parent:parentCategory
       
