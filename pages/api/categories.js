@@ -25,9 +25,10 @@ export default async function handle(req, res) {
   }
 
   if (method === 'POST') {
-    const {name,parentCategory,price,category,_id} = req.body;
+    const {name,parentCategory,price,category,_id,properties} = req.body;
     const categoryDoc = await Category.create({
-      name,parent:parentCategory
+      name,parent: parentCategory || undefined,
+      properties,
       
     });
     res.json(categoryDoc);

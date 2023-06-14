@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import { useEffect } from 'react';
 
-export default function ProductForm({_id, title: existingTitle, description: existingDescription, price: existingPrice, images, category: assignedCategory }) {
+export default function ProductForm({_id, title: existingTitle, description: existingDescription, price: existingPrice, images, category: assignedCategory, properties:assignedProperties, }) {
   const [title, setTitle] = useState(existingTitle || '');
   const [description, setDescription] = useState(existingDescription || '');
   const [price, setPrice] = useState(existingPrice || '');
@@ -12,6 +12,8 @@ export default function ProductForm({_id, title: existingTitle, description: exi
   const [goToProducts, setGoToProducts] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [categories, setCategories] = useState([]);
+  const [productProperties,setProductProperties] = useState(assignedProperties || {});
+
   useEffect(() => {
     axios.get('/api/categories').then(result => {
       setCategories(result.data);
@@ -25,7 +27,7 @@ export default function ProductForm({_id, title: existingTitle, description: exi
       description,
       price,
       images,
-      category,
+      category,productProperties
      
     };
     if (_id) {
@@ -66,6 +68,13 @@ export default function ProductForm({_id, title: existingTitle, description: exi
   if (goToProducts) {
     router.push('/products');
   }
+  function setProductProp(propName,value) {
+    setProductProperties(prev => {
+      const newProductProps = {...prev};
+      newProductProps[propName] = value;
+      return newProductProps;
+    });
+  }
 
   async function uploadImages(ev) {
     const files = ev.target?.files;
@@ -82,6 +91,7 @@ export default function ProductForm({_id, title: existingTitle, description: exi
       setIsUploading(false);
     }
   }
+  
 
   return (
     <form onSubmit={saveProduct}>
@@ -112,7 +122,7 @@ export default function ProductForm({_id, title: existingTitle, description: exi
       {propertiesToFill.length > 0 &&
         propertiesToFill.map(p => (
           <div key={p.name} className="">
-            <label>{p.name[0].toUpperCase() + p.name.substring(1)}</label>
+            <label>{p.name && typeof p.name === 'string' ? p.name[0].toUpperCase() + p.name.substring(1) : ''}</label>
             <div>
               <select
                 value={productProperties[p.name]}
