@@ -13,13 +13,11 @@ export default async function handle(req, res) {
     }
   }
 
-  if (method === "POST") {
-    const { title, description, price,category ,properties} = req.body;
+  if (method === 'POST') {
+    const {title,description,price,images,category,properties} = req.body;
     const productDoc = await Product.create({
-      title,
-      description,
-      price,category,properties
-    });
+      title,description,price,images,category,properties,
+    })
     res.json(productDoc);
   }
   if (method === 'DELETE') {
@@ -33,5 +31,6 @@ export default async function handle(req, res) {
     await Product.updateOne({_id}, {title,description,price,images,category,properties});
     res.json(true);
   }
-}
+  }
+
 

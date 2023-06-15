@@ -26,7 +26,7 @@ export default function Products() {
         </thead>
         <tbody>
           {products.map(product => (
-            <tr className="border border-blue-300 p-1" key={product._id}>
+            <tr  className="border border-blue-300 p-1" key={product._id}>
               <td className="border border-blue-300 p-1">{product.title}</td>
               <td className="border border-blue-300 p-1 flex gap-2 justify-end">
                 <Link href={'/products/edit/' + product._id} className="bg-blue-900 text-white text-sm py-1 px-2 rounded-md inline-flex items-center gap-1">
