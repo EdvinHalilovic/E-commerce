@@ -3,7 +3,7 @@ import GoogleProvider from 'next-auth/providers/google'
 import {MongoDBAdapter} from "@next-auth/mongodb-adapter";
 import clientPromise from "@/lib/mongodb";
 
-const adminEmails = ['aldin.kovacevic@ibu.edu.ba ','edvin955@gmail.com','edvin.halilovic@stu.ibu.edu.ba','nermina.durmic@ibu.edu.ba','sanjin.kurtalija@stu.ibu.edu.ba'];
+const adminEmails = ['aldin.kovacevic@ibu.edu.ba ','edvin955@gmail.com','edvin.halilovic@stu.ibu.edu.ba','nermina.durmic@ibu.edu.ba','sanjin.kurtalija@stu.ibu.edu.ba', 'sanjinkurtalija@gmail.com'];
 
 export const authOptions = {
   secret: process.env.SECRET,
