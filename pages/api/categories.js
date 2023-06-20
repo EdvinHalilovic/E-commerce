@@ -4,6 +4,8 @@ import {Category} from "@/models/Category";
 
 export default async function handle(req, res) {
   const {method} = req;
+  await mongooseConnect();
+  await isAdminRequest(req,res);
   if (method === 'DELETE') {
     const {_id} = req.query;
     await Category.deleteOne({_id});
