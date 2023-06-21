@@ -5,7 +5,7 @@ export default function Home() {
   const {data: session}= useSession();
   return <Layout>
     <div className="text-blue-900">
-      Selam alejk , {session.user.email}
+      Hello  i hope you are doing well , {session.user.email}
     </div>
   </Layout>
   
