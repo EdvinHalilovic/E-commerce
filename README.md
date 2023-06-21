@@ -1,3 +1,8 @@
+We had two githubs one for main and one for backend admin adding my github and front:https://github.com/Sanjin888/ecommerce-front
+The main information about the patch ore on the fron github
+Link for deployment for admin: https://e-commerce-46b9-edvinhalilovic.vercel.app/
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
